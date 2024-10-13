@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f0f0f0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.music-player{
+    background-color:#fff ;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 350px;
+    
+}
+
+.song-info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.song-info img{
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 20px ;
+}
+
+.song-info h2{
+    font-size: 1.2rem;
+    color: #333;
+}
+.song-info p{
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+.progress-container{
+    margin-bottom:20px ;
+}
+.progress-bar{
+    background-color: #e0e0e0;
+    height: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress{
+    background-color: #1db954;
+    height: 0%;
+    width: 90%;
+    border-radius: 10px;
+    transition:  width 0.1s linear;
+}
+.time{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: color .3s  ease;
+}
+.controls button{
+    background-color: transparent;
+    border: none;
+    padding: 0 10px;
+    margin: 0 15px;
+    cursor: pointer;
+}
+.controls button i:hover{
+    color: #1db954;
+}
+.controls button i{
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.controls .play-btn i{
+    font-size: 2.5rem;
+}
+
+.add-controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.volume-container , .speed-container{
+    display: flex;
+    align-items: center;
+}
+.volume-container i , .speed-container i{
+    font-size: 1.1rem;
+    color: #666;
+    margin-right: 10px;
+}
+
+#volume {
+    -webkit-appearance: none;
+    width: 100px;
+    background-color: #e0e0e0;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#volume::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #1db954;
+    border-radius: 50%;
+}
+#volume::-moz-range-thumb{
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #1db954;
+    border-radius: 50%;
+}
+#speed{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    font-size: .9rem;
+    cursor: pointer;
+}
+#speed:focus{
+    outline: none;
+    border-color: #1db954;
+}
