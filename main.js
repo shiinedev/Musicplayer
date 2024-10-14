@@ -110,9 +110,46 @@ const updateProgress = (e) =>{
     
     progress.style.width = `${currentTime/duration*100}%`
 
-    
+    //time 
+    //duration time
+    let durationMinutes = Math.floor(duration / 60);
+    let durationSeconds  = Math.floor(duration % 60);
+ 
+
+    if(durationSeconds < 10){
+      durationSeconds =`0${durationSeconds}`;
+    }
+     
+    durationEl.textContent= `${durationMinutes}:${durationSeconds}`;
+
+    //current Time
+
+    let currentMinutes = Math.floor(currentTime/60 );
+    let currentSeconds = Math.floor(currentTime % 60);
+
+    if(currentSeconds < 10){
+        currentSeconds = `0${currentSeconds}`
+    }
+
+    currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
 }
 
+//setProgress
+const setProgress = (e) =>{
+     const width = this.clientWidth;
+     console.log("width", width);
+
+     const clickX = e.offsetX;
+     const duration = audioElement.duration;
+     
+     const newTime = (clickX/width) * duration;
+     if(isNaN(duration)) return;
+
+     audioElement.currentTime = newTime;
+     console.log(newTime);
+     
+     
+}
 
 // All Events 
 
@@ -123,13 +160,16 @@ playBtn.addEventListener("click", () =>{
 });
 
 
-// Next song btn
+// change to Next song btn
 nextBtn.addEventListener("click" , nextSong);
 
-//prev Btn Event 
+//back to prev Btn Event 
 
 prevBtn.addEventListener("click" ,  prevSong);
 
-// progres 
+// time /song update
 
-audioElement.addEventListener("timeupdate" ,  updateProgress)
+audioElement.addEventListener("timeupdate" ,  updateProgress);
+
+//click progres bar
+progressContainer.addEventListener("click", setProgress)
