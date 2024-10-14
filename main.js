@@ -20,7 +20,7 @@ const speedSelect = document.getElementById('speed');
 
 // Song data
 const songs = [
-    // https://soundcloud.com/soundhelix/sets/soundhelix-examples?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
+   // https://soundcloud.com/soundhelix/sets/soundhelix-examples?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
     { title: 'Song One', artist: 'Artist one', cover: "https://placehold.co/250/4CAF50/FFFFFF?text=1", src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
     { title: 'Song two', artist: 'Artist two', cover: 'https://placehold.co/250/2196F3/FFFFFF?text=2', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
     { title: 'Song three', artist: 'Artist three', cover: 'https://placehold.co/250/FFC107/FFFFFF?text=3', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
@@ -132,12 +132,14 @@ const updateProgress = (e) =>{
     }
 
     currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+
+    audioElement.playbackRate = speed;
 }
 
 //setProgress
 const setProgress = (e) =>{
-     const width = this.clientWidth;
-     console.log("width", width);
+     const width = e.currentTarget.clientWidth;
+  
 
      const clickX = e.offsetX;
      const duration = audioElement.duration;
@@ -146,7 +148,7 @@ const setProgress = (e) =>{
      if(isNaN(duration)) return;
 
      audioElement.currentTime = newTime;
-     console.log(newTime);
+   
      
      
 }
@@ -172,4 +174,23 @@ prevBtn.addEventListener("click" ,  prevSong);
 audioElement.addEventListener("timeupdate" ,  updateProgress);
 
 //click progres bar
-progressContainer.addEventListener("click", setProgress)
+progressContainer.addEventListener("click", setProgress);
+
+// change the volume 
+volumeSlider.addEventListener("input", (e) =>{
+    let volume = parseFloat(e.target.value); // Get the slider value as a number
+    
+    audioElement.volume = volume;
+    
+});
+
+// change the speed time
+speedSelect.addEventListener("change", (e)=>{
+    speed = parseFloat(e.target.value);
+    
+    audioElement.playbackRate = speed;
+    
+});
+
+//load meta data
+audioElement.addEventListener("loadedmetadata", updateProgress);
